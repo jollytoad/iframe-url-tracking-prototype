@@ -1,5 +1,5 @@
 window.onload = function() {
-    document.getElementById("url").innerText = window.location;
+    document.getElementById("url").innerHTML = window.location;
 
     console.log(parent);
 

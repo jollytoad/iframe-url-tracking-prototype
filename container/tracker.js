@@ -8,13 +8,8 @@ App.switchOrigin = function() {
 };
 
 App.setUrl = function(url, location) {
-    url.innerText = "";
-    url.innerText = location;
-};
-
-App.setUrlFromIframe = function(iframe, url) {
-    url.innerText = "";
-    url.innerText = iframe.contentWindow.location;
+    url.innerHTML = "";
+    url.innerHTML = location;
 };
 
 window.onload = function() {
