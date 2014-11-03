@@ -16,3 +16,14 @@ the embedded app.
 The embedded app will notify the container of it location when the URL changes.
 
 postMessage will be used to communicate between the container and the embedded app.
+
+# Tested
+
+On Sauce Labs:
+
+* Win 8.1 + IE 11 - works
+* Win 8 + IE 10 - works
+* Win 7 + IE 9 - doesn't work, appears that postMessage can only send strings
+* Win 7 + IE 8 - doesn't work due to use of window.addEventListener
+* Win 8.1 + FF 33 - works
+* Win 8.1 + Chrome 38 - works
