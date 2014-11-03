@@ -26,6 +26,14 @@ window.onload = function() {
 
         // TODO: Should check event.origin is as expected
 
+        if (event.source === App.iframe1.contentWindow) {
+            console.log("event.source === App.iframe1.contentWindow");
+        }
+
+        if (event.data && event.data.url) {
+            console.log("url: ", event.data.url);
+        }
+
         if (event.source === App.iframe1.contentWindow && event.data.url) {
             console.log("set url from message");
             App.setUrl(App.url1, event.data.url);
