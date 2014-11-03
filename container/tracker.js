@@ -7,7 +7,13 @@ App.switchOrigin = function() {
     App.iframe2.src = origin;
 };
 
+App.setUrl = function(url, location) {
+    url.innerText = "";
+    url.innerText = location;
+};
+
 App.setUrlFromIframe = function(iframe, url) {
+    url.innerText = "";
     url.innerText = iframe.contentWindow.location;
 };
 
@@ -19,24 +25,22 @@ window.onload = function() {
     App.iframe2 = document.getElementById("iframe2");
     App.url2 = document.getElementById("url2");
 
-    // Fetch iframe1 url using interval
-//    setInterval(function() {
-//        App.setUrlFromIframe(App.iframe1, App.url1);
-//    }, 1000);
-
     // Fetch iframe1 url from a message event
     window.addEventListener("message", function(event) {
         console.log("message from ", event.origin, event.source, " -> ", event.data);
 
+        // TODO: Should check event.origin is as expected
+
         if (event.source === App.iframe1.contentWindow && event.data.url) {
             console.log("set url from message");
-            App.url1.innerText = event.data.url;
+            App.setUrl(App.url1, event.data.url);
         }
     });
 
     // Fetch iframe2 url using onload event
-    App.setUrlFromIframe(App.iframe2, App.url2);
+    App.setUrl(App.url2, App.iframe2.contentWindow.location);
     App.iframe2.onload = function() {
-        App.setUrlFromIframe(App.iframe2, App.url2);
+        console.log("set url from iframe location");
+        App.setUrl(App.url2, App.iframe2.contentWindow.location);
     };
 };
